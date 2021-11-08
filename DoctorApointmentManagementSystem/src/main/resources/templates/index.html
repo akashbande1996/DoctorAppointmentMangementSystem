@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Doctor Appointments</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<style>
+	.error {
+    color: red;
+    font-style: italic;
+}
+</style>
+<body>
+    <div class="container text-center">
+        <div>
+            <h1>Book Appointment</h1>
+        </div>
+        <form th:action="@{/bookappointment}" th:object="${appointmentdetails}" method="post" style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Name: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{pName}" class="form-control" required/>
+                </div>
+                <div th:if="${#fields.hasErrors('pName')}" th:errors="*{pName}">Name Error</div>
+       	      </div>
+             
+             <div class="form-group row">
+                <label class="col-4 col-form-label">Address: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{address}" class="form-control"
+                            required minlength="2" maxlength="40" />
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Mobile Number: </label>
+                <div class="col-8">
+                    <input type="tel" pattern = "[789][0-9]{9}" th:field="*{mobileNumber}" class="form-control"
+                           minlength="10" maxlength="10" required/>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Email: </label>
+                <div class="col-8">
+                    <input type="email" th:field="*{email}" class="form-control"
+                            required/>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Date of Birth: </label>
+                <div class="col-8">
+                    <input type="date"th:field="*{Dob}" class="form-control"
+                            required/>
+                </div>
+            </div>
+             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Blood Group : </label>
+                <div class="col-8">
+                    <select id="cars" th:field="*{bloodGroup}" name="bloodgrp">
+                    	<option value="NA">Select Option</option>
+  						<option value="A_Positive">A+</option>
+						  <option value="B_Positive">B+</option>
+						  <option value="AB_Positive">AB+</option>
+						  <option value="A_Negative">A-</option>
+						  <option value="B_Negative">B-</option>
+						  <option value="AB_Negative">AB-</option>
+						</select>
+                </div>
+            </div>
+             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Date of Appointment : </label>
+                <div class="col-8">
+                    <input type="date" th:field="*{appointmentDate}" class="form-control"
+                            required/>
+                </div>
+            </div>
+             
+            
+             
+            <div>
+                <button type="submit" class="btn btn-primary">Book Appointment</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
